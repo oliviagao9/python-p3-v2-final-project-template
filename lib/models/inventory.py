@@ -1,6 +1,9 @@
 from models.__init__ import CURSOR, CONN 
 
 class Inventory:
+
+    all = {}
+
     def __init__(self, name, price, quantity):
         self.name = name
         self.price = price
@@ -54,18 +57,22 @@ class Inventory:
         CURSOR.execute(sql)
         CONN.commit()
 
-    @classmethod
-    def create(cls, name, price, quantity):
-        inventory = cls(name, price, quantity)
+    def save(self):
         sql = """
             INSERT INTO inventories (name, price, quantity)
             VALUES (?, ?, ?)
         """
-        CURSOR.execute(sql, (inventory.name, inventory.price, inventory.quantity))
+
+        CURSOR.execute(sql, (self.name, self.price, self.quantity))
         CONN.commit()
 
-        inventory.id = CURSOR.lastrowid
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
 
+    @classmethod
+    def create(cls, name, price, quantity):
+        inventory = cls(name, price, quantity)
+        inventory.save()
         return inventory
     
     def update(self):
@@ -76,3 +83,20 @@ class Inventory:
         """
         CURSOR.execute(sql, (self.name, self.price, self.quantity))
         CONN.commit()
+
+    def delete(self):
+        sql = """
+            DELETE FROM inventories
+            WHERE id = ?
+        """
+
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+        name = self.name
+        del type(self).all[self.id]
+
+        self.id = None
+
+        print(f'Inventory {name} is deleted')
+
+        
