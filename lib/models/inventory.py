@@ -67,3 +67,12 @@ class Inventory:
         inventory.id = CURSOR.lastrowid
 
         return inventory
+    
+    def update(self):
+        sql = """
+            UPDATE inventories
+            SET name = ?, price = ?, quantity = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.name, self.price, self.quantity))
+        CONN.commit()
