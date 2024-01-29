@@ -99,4 +99,27 @@ class Inventory:
 
         print(f'Inventory {name} is deleted')
 
-        
+    @classmethod
+    def instance_from_db(cls, row):
+
+        inventory = cls.all.get(row[0])
+        if inventory:
+            inventory.name = row[1]
+            inventory.price = row[2]
+            inventory.quantity = row[3]
+        else:
+            inventory = cls(row[1], row[2], row[3])
+            inventory.id = row[0]
+            cls.all[inventory.id] = inventory
+        return inventory
+    
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT *
+            FROM inventories
+        """
+
+        rows = CURSOR.execute(sql).fetchall()
+
+        return [cls.instance_from_db(row) for row in rows]
