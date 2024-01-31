@@ -76,13 +76,14 @@ class Inventory:
         inventory.save()
         return inventory
     
-    def update(self):
+    @classmethod
+    def update_quantity(cls, inventory_id, quantity):
         sql = """
             UPDATE inventories
-            SET name = ?, price = ?, quantity = ?
+            SET quantity = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.name, self.price, self.quantity))
+        CURSOR.execute(sql, (quantity, inventory_id))
         CONN.commit()
 
     def delete(self):
