@@ -1,28 +1,32 @@
 # lib/cli.py
 
-from helpers import (
-    exit_program,
-    helper_1
-)
+from helpers import *
 
+def greeting():
+    print("Hi there welcome to Olivia Florist Inventory Management System")
 
 def main():
     while True:
         menu()
         choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            helper_1()
+        if choice == "1":
+            view_inventory()
+        elif choice == "2":
+            update_inventory()
+        elif choice == "3":
+            place_order()
+        elif choice == "4"
+            exit()
         else:
-            print("Invalid choice")
+            print("Please Enter a valid choice from 1 - 4")
 
 
 def menu():
     print("Please select an option:")
-    print("0. Exit the program")
-    print("1. Some usefulpip function")
-
-
+    print("1. View Current Inventory")
+    print("2. Update Inventory")
+    print("3. Place Order")
+    print("4. Exit")
+    
 if __name__ == "__main__":
     main()
