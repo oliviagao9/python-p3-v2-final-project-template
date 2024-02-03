@@ -1,22 +1,27 @@
 # lib/cli.py
-
+import time
 from helpers import *
 
 def greeting():
     print("Hi there welcome to Olivia Florist Inventory Management System")
 
 def main():
-    while True:
+    cli_menu_flag = True
+    while cli_menu_flag == True:
         menu()
         choice = input("> ")
+
         if choice == "1":
-            view_inventory()
+            view_current_inventory()
+            cli_menu_flag = False
+            backToMenu()
+
         elif choice == "2":
-            update_inventory()
+            pass
         elif choice == "3":
-            place_order()
+            pass
         elif choice == "4":
-            exit()
+            exit_program()
         else:
             print("Please Enter a valid choice from 1 - 4")
 
@@ -27,6 +32,18 @@ def menu():
     print("2. Update Inventory")
     print("3. Place Order")
     print("4. Exit")
+
+def backToMenu():
+    time.sleep(1)
+    print("If you want to go back to previous menu, please enter 1")
+    print("If you want to exit the application, please enter 2")
+    user_choice = input("> ")
+    if user_choice == "1":
+        time.sleep(0.5)
+        main()
+
+    elif user_choice == "2":
+        exit_program()
 
 if __name__ == "__main__":
     main()
