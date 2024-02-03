@@ -45,5 +45,12 @@ def return_menu_option():
     elif user_choice == "2":
         exit_program()
 
+def update_inventory_menu():
+    print("Please select an option:")
+    print("1. Edit Current Inventory")
+    print("2. Add New Inventory")
+    print("3. Delete Inventory")
+    print("4. Exit")
+
 if __name__ == "__main__":
     main()
