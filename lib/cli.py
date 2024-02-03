@@ -33,7 +33,7 @@ def menu():
     print("3. Place Order")
     print("4. Exit")
 
-def backToMenu():
+def return_menu_option():
     time.sleep(1)
     print("If you want to go back to previous menu, please enter 1")
     print("If you want to exit the application, please enter 2")
