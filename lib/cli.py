@@ -14,7 +14,7 @@ def main():
         if choice == "1":
             view_current_inventory()
             cli_menu_flag = False
-            backToMenu()
+            return_menu_option()
 
         elif choice == "2":
             pass
