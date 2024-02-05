@@ -1,5 +1,6 @@
 # lib/helpers.py
 from models.inventory import Inventory
+from cli import *
 import time
 
 def exit_program():
@@ -76,19 +77,32 @@ def add_inventory():
 
 
 def update_inventory():
-    choice = input("> ")
+    time.sleep(0.3)
+    print("Please enter the product name that you want to update the quantity")
+    print("You can enter exit to go to menu options")
+    while True:
+        choice = input("> ")
 
-    if choice == "1":
-        view_current_inventory()
-
-    elif choice == "2":
-        pass
-    elif choice == "3":
-        pass
-    elif choice == "4":
-        exit_program()
-    else:
-        print("Please Enter a valid choice from 1 - 4")
-
+        if choice == "exit":
+            break
+        else: 
+            if (Inventory.find_by_name(choice)):
+                print("Please enter the new quantity")
+                while True:
+                    quantity_choice = input(">")
+                    try:
+                        int(quantity_choice)
+                        break
+                    except Exception as exc: 
+                        print("Please enter whole number for product quantity")
+                        continue
+                    
+                Inventory.update_quantity(Inventory.find_by_name(choice).id, int(quantity_choice))
+                print(f"{choice}'s quantity is updated to {quantity_choice}")
+                break
+            else:
+                print("The product name you entered is not found, please enter correct product name")
+                print("You can enter exit to go to menu options")
+        
 
 

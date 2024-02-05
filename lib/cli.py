@@ -20,7 +20,9 @@ def main():
             return_menu_option()
 
         elif choice == "3":
-            pass
+            view_current_inventory()
+            update_inventory()
+            return_menu_option()
 
         elif choice == "4":
             pass
