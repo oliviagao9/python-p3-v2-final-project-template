@@ -75,8 +75,6 @@ def add_inventory():
         time.sleep(0.3)
         break 
         
-
-
 def update_inventory():
     time.sleep(0.3)
     print("Please enter the product name that you want to update the quantity")
