@@ -1,9 +1,26 @@
 # lib/helpers.py
 from models.inventory import Inventory
+import time
 
 def exit_program():
     print("Goodbye!")
     exit()
+
+def menu():
+    print("Please select an option:")
+    print("1. View Current Inventory")
+    print("2. Add Inventory")
+    print("3. Update Inventory Quantity")
+    print("4. Delete Inventory")
+    print("5. Place Order")
+    print("6. Exit")
+
+def update_inventory_menu():
+    print("Please select an option:")
+    print("1. Edit Current Inventory Quantity")
+    print("2. Add New Inventory")
+    print("3. Delete Inventory")
+    print("4. Exit")
 
 def view_current_inventory(nameOnly=None):
 
@@ -15,5 +32,63 @@ def view_current_inventory(nameOnly=None):
         for item in inventory_items:
             print(f"Product Id: {item.id} | Product Name: {item.name} | Price: {item.price} | Quantity: {item.quantity}")
 
+def add_inventory():
+    while True:
+        print("Please enter the product name")
+        product_name = input("> ")
+        while True:
+            if isinstance(product_name, str) and len(product_name):
+                if Inventory.find_by_name(product_name):
+                    print("This product name is already taken, please enter a different one.")
+                    time.sleep(0.3)
+                    add_inventory()
+
+                print("Please enter the price of the product")
+                while True:
+                    product_price = input(">")
+                    try:
+                        float(product_price)
+                        product_price = float(product_price)
+                        break
+                    except Exception as exc: 
+                        print("Please enter integer for product price")
+                        continue
+
+                print("Please enter the quantity of the product")
+                while True:
+                    product_quantity = input(">")
+                    try:
+                        int(product_quantity)
+                        break
+                    except Exception as exc: 
+                        print("Please enter whole number for product quantity")
+                        continue
+                
+            try:
+                Inventory.create(product_name, product_price, product_quantity)
+                break
+            except Exception as exc:
+                print(exc)
+        print("The new inventory is successfully added!")
+        time.sleep(0.3)
+        break 
+        
+
+
 def update_inventory():
-    pass
+    choice = input("> ")
+
+    if choice == "1":
+        view_current_inventory()
+
+    elif choice == "2":
+        pass
+    elif choice == "3":
+        pass
+    elif choice == "4":
+        exit_program()
+    else:
+        print("Please Enter a valid choice from 1 - 4")
+
+
+
