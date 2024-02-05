@@ -103,7 +103,21 @@ class Order:
         new_inventory_quantity = original_quantity - old_order_quantity + quantity
         Inventory.update_quantity(product_id, new_inventory_quantity)
 
-       
+    def delete(self):
+        sql = """
+            DELETE FROM orders
+            WHERE id = ?
+        """
+
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+        order_id = self.id
+        del type(self).all[self.id]
+
+        self.id = None
+
+        print(f'Order ID {order_id} is deleted')
+
     @classmethod
     def create(cls, name, quantity, product_id):
         order = cls(name, quantity, product_id)
