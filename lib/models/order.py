@@ -83,7 +83,6 @@ class Order:
 
         CURSOR.execute(sql, (self.name, self.quantity, self.product_id))
         CONN.commit()
-        breakpoint()
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
