@@ -1,5 +1,6 @@
 # lib/helpers.py
 from models.inventory import Inventory
+from models.order import Order
 from cli import *
 import time
 
@@ -121,3 +122,34 @@ def delete_inventory():
             else:
                 print("The product name you entered is not found, please enter a correct product name")
                 print("You can enter exit to go to menu options")
+
+def add_order():
+    while True:
+        print("Please enter a product name you want to order")
+        product_name = input("> ")
+        while True:
+            if isinstance(product_name, str) and len(product_name):
+                if not Inventory.find_by_name(product_name):
+                    print("This product name is not found, please enter a correct product name.")
+                    time.sleep(0.3)
+                    add_order()
+
+                product_id = Inventory.find_by_name(product_name).id
+                print(f"Please enter the quantity of {product_name} you want to order")
+                while True:
+                    product_quantity = input(">")
+                    try:
+                        int(product_quantity)
+                        break
+                    except Exception as exc: 
+                        print("Please enter whole number for product quantity")
+                        continue
+                
+            try:
+                Order.create(product_name, int(product_quantity), product_id)
+                break
+            except Exception as exc:
+                print(exc)
+        print("The order is successfully placed!")
+        time.sleep(0.3)
+        break 

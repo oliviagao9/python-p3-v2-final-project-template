@@ -30,7 +30,7 @@ def main():
             return_menu_option()
 
         elif choice == "5":
-            pass
+            order_menu_option()
 
         elif choice == "6":
             exit_program()
@@ -50,6 +50,28 @@ def return_menu_option():
 
     elif user_choice == "2":
         exit_program()
+
+def order_menu_option():
+    print("Please select an option for Order:")
+    print("1. Place an New Order")
+    print("2. Edit an Existing Order")
+    print("3. Delete Order")
+    print("4. Exit")
+    user_choice = input("> ")
+    
+    if user_choice == "1":
+        view_current_inventory()
+        add_order()
+        
+    elif user_choice == "2":
+        pass
+    elif user_choice == "3":
+        pass
+    elif user_choice == "4":
+        exit_program()
+    else:
+        print("Please Enter a valid choice from 1 - 4")
+        order_menu_option()
 
 if __name__ == "__main__":
     main()
