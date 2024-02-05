@@ -79,7 +79,7 @@ def add_inventory():
 def update_inventory():
     time.sleep(0.3)
     print("Please enter the product name that you want to update the quantity")
-    print("You can enter exit to go to menu options")
+    print("You can enter exit to go to other menu options")
     while True:
         choice = input("> ")
 
@@ -101,8 +101,23 @@ def update_inventory():
                 print(f"{choice}'s quantity is updated to {quantity_choice}")
                 break
             else:
-                print("The product name you entered is not found, please enter correct product name")
+                print("The product name you entered is not found, please enter a correct product name")
                 print("You can enter exit to go to menu options")
         
+def delete_inventory():
+    time.sleep(0.3)
+    print("Please enter the product name that you want to delete from inventory")
+    print("You can enter exit to go to other menu options")
+    while True:
+        choice = input("> ")
 
-
+        if choice == "exit":
+            break
+        else: 
+            if (Inventory.find_by_name(choice)):
+                Inventory.delete(Inventory.find_by_name(choice))
+                print(f"{choice} is succesfully deleted from inventory")
+                break
+            else:
+                print("The product name you entered is not found, please enter a correct product name")
+                print("You can enter exit to go to menu options")

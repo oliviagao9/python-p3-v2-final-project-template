@@ -25,7 +25,9 @@ def main():
             return_menu_option()
 
         elif choice == "4":
-            pass
+            view_current_inventory()
+            delete_inventory()
+            return_menu_option()
 
         elif choice == "5":
             pass
