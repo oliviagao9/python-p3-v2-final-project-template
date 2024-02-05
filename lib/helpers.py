@@ -193,3 +193,29 @@ def update_order():
             time.sleep(0.3)
             print(f"Order Id {choice}'s quantity is updated to {order_new_quantity}")
             break
+
+def delete_order():
+    time.sleep(0.3)
+    print("Please enter the order id that you want to delete")
+    print("You can enter exit to go to other menu options")
+    while True:
+        choice = input("> ")
+
+        if choice == "exit":
+            break
+        else: 
+            try:
+                int(choice)
+                if int(choice) and Order.find_by_id(int(choice)):
+                    order = Order.find_by_id(int(choice))
+                    Order.delete(order)
+                    print(f"{choice} is succesfully deleted from inventory")
+                    break
+
+                print("Order is not found, please enter a correct order id")
+                continue
+
+            except Exception as exc: 
+                print("Please Enter a Correct Order ID")
+                continue
+        break
