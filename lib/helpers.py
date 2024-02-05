@@ -157,3 +157,39 @@ def view_current_order():
     order_items = Order.get_all()
     for item in order_items:
         print(f"Order Id: {item.id} | Product Name: {item.name} | Product Id: {item.product_id}| Quantity: {item.quantity}")
+
+def update_order():
+    while True:
+        choice = input("> ")
+
+        if choice == "exit":
+            break
+        else: 
+            while True:
+                try:
+                    int(choice)
+                    if int(choice) and Order.find_by_id(int(choice)):
+                        order_id = Order.find_by_id(int(choice)).id
+                        break
+
+                    print("Order is not found, please enter a correct order id")
+                    update_order()
+
+                except Exception as exc: 
+                    print("Please Enter a Correct Order ID")
+                    update_order()
+            
+            print("Please enter correct number for product quantity")
+            while True:
+                order_new_quantity = input("> ")
+                try:
+                    int(order_new_quantity)
+                    break
+                except Exception as exc: 
+                    print("Please enter whole number for new order quantity")
+                    continue
+            
+            Order.update_quantity(order_id, int(order_new_quantity))
+            time.sleep(0.3)
+            print(f"Order Id {choice}'s quantity is updated to {order_new_quantity}")
+            break

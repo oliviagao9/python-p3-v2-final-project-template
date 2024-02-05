@@ -62,9 +62,14 @@ def order_menu_option():
     if user_choice == "1":
         view_current_inventory()
         add_order()
-        
+
     elif user_choice == "2":
-        pass
+        view_current_order()
+        time.sleep(0.3)
+        print("Please enter the order id that you want to update")
+        print("You can enter exit to go to other menu options")
+        update_order()
+        
     elif user_choice == "3":
         pass
     elif user_choice == "4":
