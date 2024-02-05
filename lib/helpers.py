@@ -151,3 +151,9 @@ def add_order():
         print("The order is successfully placed!")
         time.sleep(0.3)
         break 
+
+def view_current_order():
+
+    order_items = Order.get_all()
+    for item in order_items:
+        print(f"Order Id: {item.id} | Product Name: {item.name} | Product Id: {item.product_id}| Quantity: {item.quantity}")
