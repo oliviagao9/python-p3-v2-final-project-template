@@ -93,7 +93,7 @@ def order_menu_option():
         return_order_menu_option()
 
     elif user_choice == "3":
-        view_current_order()
+        view_current_order(True)
         time.sleep(0.3)
         print("Please enter the order id that you want to update")
         print("You can enter exit to go to other menu options")
@@ -101,7 +101,7 @@ def order_menu_option():
         return_order_menu_option()
         
     elif user_choice == "4":
-        view_current_order()
+        view_current_order(True)
         delete_order()
         return_order_menu_option()
         
