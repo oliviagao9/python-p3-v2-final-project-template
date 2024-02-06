@@ -1,4 +1,3 @@
-# lib/cli.py
 from helpers import *
 import time
 
@@ -17,6 +16,7 @@ def greeting():
     time.sleep(0.5)
 
 def main():
+    greeting()
     while True:
         menu()
         choice = input("> ")
@@ -56,7 +56,6 @@ def return_main_menu_option():
 
     if user_choice == "1":
         time.sleep(0.5)
-        main()
 
     elif user_choice == "2":
         exit_program()
@@ -115,5 +114,3 @@ def order_menu_option():
 
 if __name__ == "__main__":
     main()
-
-greeting()
