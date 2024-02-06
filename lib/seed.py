@@ -17,3 +17,7 @@ Inventory.create("Ti Leaf", 2, 15)
 
 Order.drop_table()
 Order.create_table()
+
+Order.create("Red Rose", 10, 1)
+Order.create("Iris", 5, 7)
+Order.create("Rosemary", 3, 3)

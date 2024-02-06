@@ -85,6 +85,7 @@ def update_inventory():
     time.sleep(0.3)
     print("Please enter the product name that you want to update the quantity")
     print("You can enter exit to go to other menu options")
+
     while True:
         update_choice = input("> ")
 
@@ -115,15 +116,17 @@ def delete_inventory():
     time.sleep(0.3)
     print("Please enter the product name that you want to delete from inventory")
     print("You can enter exit to go to other menu options")
-    while True:
-        choice = input("> ")
 
-        if choice == "exit":
+    while True:
+        inventory_to_delete = input("> ")
+
+        if inventory_to_delete == "exit":
             break
         else: 
-            if (Inventory.find_by_name(choice)):
-                Inventory.delete(Inventory.find_by_name(choice))
-                print(f"{choice} is succesfully deleted from inventory")
+            if (Inventory.find_by_name(inventory_to_delete)):
+                product_to_delete = Inventory.find_by_name(inventory_to_delete)
+                Inventory.delete(product_to_delete)
+                print(f"{inventory_to_delete} is succesfully deleted from inventory")
                 break
             else:
                 print("The product name you entered is not found, please enter a correct product name")
@@ -132,38 +135,46 @@ def delete_inventory():
 def add_order():
     while True:
         print("Please enter a product name you want to order")
-        product_name = input("> ")
+        new_product = input("> ")
+        
         while True:
-            if isinstance(product_name, str) and len(product_name):
-                if not Inventory.find_by_name(product_name):
+            if isinstance(new_product, str) and len(new_product):
+                if not Inventory.find_by_name(new_product):
                     print("This product name is not found, please enter a correct product name.")
                     time.sleep(0.3)
-                    add_order()
+                    continue
 
-                product_id = Inventory.find_by_name(product_name).id
-                print(f"Please enter the quantity of {product_name} you want to order")
+                product_id = Inventory.find_by_name(new_product).id
+                print(f"Please enter the quantity of {new_product} you want to order")
+
                 while True:
                     product_quantity = input(">")
                     try:
                         int(product_quantity)
                         break
-                    except Exception as exc: 
+                    except Exception: 
                         print("Please enter whole number for product quantity")
                 
-            try:
-                Order.create(product_name, int(product_quantity), product_id)
-                break
-            except Exception as exc:
-                print(exc)
+                try:
+                    Order.create(new_product, int(product_quantity), product_id)
+                    break
+                except Exception as exc:
+                    print(exc)
+                
         print("The order is successfully placed!")
         time.sleep(0.3)
         break 
 
-def view_current_order():
+def view_current_order(show_id = None):
 
     order_items = Order.get_all()
-    for item in order_items:
-        print(f"Order Id: {item.id} | Product Name: {item.name} | Product Id: {item.product_id}| Quantity: {item.quantity}")
+    if show_id:
+        for item in range (order_items):
+            print(f" Order Id{item.id} | Product Name: {item.name} | Product Id: {item.product_id}| Quantity: {item.quantity}")
+    else :
+        for index, item in enumerate (order_items):
+            print(f" {index + 1} | Product Name: {item.name} | Product Id: {item.product_id}| Quantity: {item.quantity}")
+
 
 def update_order():
     while True:

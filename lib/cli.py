@@ -74,6 +74,7 @@ def return_order_menu_option():
         exit_program()
 
 def order_menu_option():
+    time.sleep(0.5)
     print("Please select an option for Order:")
     print("1. View Order List")
     print("2. Place an New Order")
@@ -83,7 +84,7 @@ def order_menu_option():
     user_choice = input("> ")
 
     if user_choice == "1":
-        view_current_inventory()
+        view_current_order()
         return_order_menu_option()
     
     elif user_choice == "2":
