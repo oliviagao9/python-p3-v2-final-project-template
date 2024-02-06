@@ -1,7 +1,5 @@
-# lib/helpers.py
 from models.inventory import Inventory
 from models.order import Order
-from cli import *
 import time
 
 def exit_program():
@@ -88,27 +86,30 @@ def update_inventory():
     print("Please enter the product name that you want to update the quantity")
     print("You can enter exit to go to other menu options")
     while True:
-        choice = input("> ")
+        update_choice = input("> ")
 
-        if choice == "exit":
+        if update_choice == "exit":
             break
         else: 
-            if (Inventory.find_by_name(choice)):
+            if (Inventory.find_by_name(update_choice)):
+                product = Inventory.find_by_name(update_choice)
                 print("Please enter the new quantity")
+
                 while True:
-                    quantity_choice = input(">")
+                    new_quantity = input(">")
                     try:
-                        int(quantity_choice)
+                        int(new_quantity)
+                        product_id = product.id
                         break
                     except Exception: 
                         print("Please enter whole number for product quantity")
                     
-                Inventory.update_quantity(Inventory.find_by_name(choice).id, int(quantity_choice))
-                print(f"{choice}'s quantity is updated to {quantity_choice}")
+                Inventory.update_quantity(product_id, int(new_quantity))
+                print(f"{update_choice}'s quantity is updated to {new_quantity}")
                 break
             else:
                 print("The product name you entered is not found, please enter a correct product name")
-                print("You can enter exit to go to menu options")
+                print("You can enter exit to go to other menu options")
         
 def delete_inventory():
     time.sleep(0.3)
