@@ -23,7 +23,6 @@ def main():
 
         if choice == "1":
             view_current_inventory()
-            breakpoint()
             return_main_menu_option()
 
         elif choice == "2":
