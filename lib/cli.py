@@ -3,16 +3,27 @@ from helpers import *
 import time
 
 def greeting():
-    print("Hi there welcome to Olivia Florist Inventory Management System")
+    logo = '''
+    _____ _                      __        __               ____            _                 
+    |  ___| | _____      _____ _ _\ \      / /_ _ _ __ ___  / ___| _   _ ___| |_ ___ _ __ ___  
+    | |_  | |/ _ \ \ /\ / / _ \ '__\ \ /\ / / _` | '__/ _ \ \___ \| | | / __| __/ _ \ '_ ` _ \ 
+    |  _| | | (_) \ V  V /  __/ |   \ V  V / (_| | | |  __/  ___) | |_| \__ \ ||  __/ | | | | |
+    |_|   |_|\___/ \_/\_/ \___|_|    \_/\_/ \__,_|_|  \___| |____/ \__, |___/\__\___|_| |_| |_|
+                                                                |___/                          
+    '''
+    print(logo)
+    time.sleep(0.5)
+    print("Hi There, Welcome to FlowerWare Inventory Management System")
+    time.sleep(0.5)
 
 def main():
-    cli_menu_flag = True
-    while cli_menu_flag == True:
+    while True:
         menu()
         choice = input("> ")
 
         if choice == "1":
             view_current_inventory()
+            breakpoint()
             return_main_menu_option()
 
         elif choice == "2":
@@ -105,3 +116,5 @@ def order_menu_option():
 
 if __name__ == "__main__":
     main()
+
+greeting()
