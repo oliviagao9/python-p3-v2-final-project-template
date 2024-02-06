@@ -29,40 +29,50 @@ def view_current_inventory(nameOnly=None):
     inventory_items = Inventory.get_all()
     if nameOnly:
         for item in inventory_items:
-            print(f"Product Id: {item.id} | Product Name: {item.name}")
+            print(f"Product Name: {item.name}")
     else :
         for item in inventory_items:
-            print(f"Product Id: {item.id} | Product Name: {item.name} | Price: {item.price} | Quantity: {item.quantity}")
+            print(f"Product Name: {item.name} | Price: {item.price} | Quantity: {item.quantity}")
 
 def add_inventory():
     while True:
         print("Please enter the product name")
-        product_name = input("> ")
         while True:
-            if isinstance(product_name, str) and len(product_name):
-                if Inventory.find_by_name(product_name):
-                    print("This product name is already taken, please enter a different one.")
-                    time.sleep(0.3)
-                    add_inventory()
 
-                print("Please enter the price of the product")
-                while True:
-                    product_price = input(">")
-                    try:
-                        float(product_price)
-                        product_price = float(product_price)
-                        break
-                    except Exception: 
-                        print("Please enter integer for product price")
+            while True:
+                product_name = input("> ")
 
-                print("Please enter the quantity of the product")
-                while True:
-                    product_quantity = input(">")
-                    try:
-                        int(product_quantity)
-                        break
-                    except Exception: 
-                        print("Please enter whole number for product quantity")
+                try:
+                    int(product_name) 
+                    print("Please Enter String Data Type for The Product Name")
+                    continue
+                except Exception:
+                    if isinstance(product_name, str) and len(product_name):
+                        if Inventory.find_by_name(product_name):
+                            print("This product name is already taken, please enter a different one.")
+                            time.sleep(0.3)
+                            continue
+                        else:
+                            break
+
+            print("Please enter the price of the product")
+            while True:
+                product_price = input(">")
+                try:
+                    float(product_price)
+                    product_price = float(product_price)
+                    break
+                except Exception: 
+                    print("Please enter integer for product price")
+
+            print("Please enter the quantity of the product")
+            while True:
+                product_quantity = input(">")
+                try:
+                    int(product_quantity)
+                    break
+                except Exception: 
+                    print("Please enter whole number for product quantity")
                 
             try:
                 Inventory.create(product_name, product_price, product_quantity)

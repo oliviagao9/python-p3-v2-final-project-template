@@ -35,7 +35,7 @@ def main():
             return_main_menu_option()
 
         elif choice == "4":
-            view_current_inventory()
+            view_current_inventory(True)
             delete_inventory()
             return_main_menu_option()
 
