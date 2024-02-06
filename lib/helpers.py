@@ -9,7 +9,7 @@ def exit_program():
     exit()
 
 def menu():
-    print("Please select an option:")
+    print("Please Select an Option From Menu Below:")
     print("1. View Current Inventory")
     print("2. Add Inventory")
     print("3. Update Inventory Quantity")
@@ -52,9 +52,8 @@ def add_inventory():
                         float(product_price)
                         product_price = float(product_price)
                         break
-                    except Exception as exc: 
+                    except Exception: 
                         print("Please enter integer for product price")
-                        continue
 
                 print("Please enter the quantity of the product")
                 while True:
@@ -62,9 +61,8 @@ def add_inventory():
                     try:
                         int(product_quantity)
                         break
-                    except Exception as exc: 
+                    except Exception: 
                         print("Please enter whole number for product quantity")
-                        continue
                 
             try:
                 Inventory.create(product_name, product_price, product_quantity)
@@ -92,9 +90,8 @@ def update_inventory():
                     try:
                         int(quantity_choice)
                         break
-                    except Exception as exc: 
+                    except Exception: 
                         print("Please enter whole number for product quantity")
-                        continue
                     
                 Inventory.update_quantity(Inventory.find_by_name(choice).id, int(quantity_choice))
                 print(f"{choice}'s quantity is updated to {quantity_choice}")
@@ -141,7 +138,6 @@ def add_order():
                         break
                     except Exception as exc: 
                         print("Please enter whole number for product quantity")
-                        continue
                 
             try:
                 Order.create(product_name, int(product_quantity), product_id)
@@ -187,7 +183,6 @@ def update_order():
                     break
                 except Exception as exc: 
                     print("Please enter whole number for new order quantity")
-                    continue
             
             Order.update_quantity(order_id, int(order_new_quantity))
             time.sleep(0.3)
@@ -213,9 +208,8 @@ def delete_order():
                     break
 
                 print("Order is not found, please enter a correct order id")
-                continue
 
-            except Exception as exc: 
+            except Exception: 
                 print("Please Enter a Correct Order ID")
-                continue
+    
         break
