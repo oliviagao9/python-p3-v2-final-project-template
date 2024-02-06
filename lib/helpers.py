@@ -225,12 +225,12 @@ def delete_order():
                 if int(choice) and Order.find_by_id(int(choice)):
                     order = Order.find_by_id(int(choice))
                     Order.delete(order)
-                    print(f"{choice} is succesfully deleted from inventory")
+                    print(f"Order number {choice} is succesfully deleted from inventory")
                     break
 
-                print("Order is not found, please enter a correct order id")
+                print("Order is not found, please enter a correct order number")
 
             except Exception: 
-                print("Please Enter a Correct Order ID")
+                print("Please Enter a Correct Order Number")
     
         break
