@@ -9,14 +9,9 @@ class Order:
         self.name = name
         self.quantity = quantity
         self.product_id = product_id
-        # self.order_number = order_number
-        # self.order_dated = order_dated
     
     def __repr__(self):
       return f"[{self.id}: {self.product_id}, {self.name}]"
-    
-    # quantity: {self.quantity}, 
-    #     order_number: {self.order_number}, order_dated: {self.order_dated}
 
     @property
     def name(self):
@@ -25,10 +20,8 @@ class Order:
     @name.setter
     def name(self, name):
       if isinstance(name, str) and len(name):
-        # if Inventory.find_by_name(name):
           self._name = name 
-        # else:
-        #     raise ValueError ("product name must reference a department in the database")
+
       else: 
         raise ValueError("Name must be a non-empty string")
     
