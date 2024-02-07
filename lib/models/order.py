@@ -115,9 +115,11 @@ class Order:
     def create(cls, name, quantity, product_id):
         order = cls(name, quantity, product_id)
         order.save()
-
-        original_quantity = Inventory.find_by_id(product_id).quantity
+        
+        inventory = Inventory.find_by_id(product_id)
+        original_quantity = inventory.quantity
         Inventory.update_quantity(product_id, quantity + original_quantity)
+
         return order
     
     @classmethod
