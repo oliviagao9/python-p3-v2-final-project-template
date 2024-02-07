@@ -47,6 +47,22 @@ def main():
 
         else:
             print("Please Enter a valid choice from 1 - 6")
+            
+def menu():
+    print("Please Select an Option From Menu Below:")
+    print("1. View Current Inventory")
+    print("2. Add Inventory")
+    print("3. Update Inventory Quantity")
+    print("4. Delete Inventory")
+    print("5. Place Order")
+    print("6. Exit")
+
+def update_inventory_menu():
+    print("Please select an option:")
+    print("1. Edit Current Inventory Quantity")
+    print("2. Add New Inventory")
+    print("3. Delete Inventory")
+    print("4. Exit")
 
 def return_main_menu_option():
     time.sleep(1)
