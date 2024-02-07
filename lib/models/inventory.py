@@ -147,3 +147,16 @@ class Inventory:
 
         row = CURSOR.execute(sql, (name,)).fetchone()
         return cls.instance_from_db(row) if row else None
+    
+    def orders(self):
+        from models.order import Order
+        sql = """
+            SELECT * FROM orders
+            WHERE product_id = ?
+        """
+        CURSOR.execute(sql, (self.id,),)
+
+        rows = CURSOR.fetchall()
+        return [
+            Order.instance_from_db(row) for row in rows
+        ]
