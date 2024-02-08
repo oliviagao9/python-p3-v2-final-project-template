@@ -10,11 +10,16 @@ def view_current_inventory(nameOnly=None):
 
     inventory_items = Inventory.get_all()
     if nameOnly:
+        print('------------------------------Inventory List------------------------------')
         for item in inventory_items:
             print(f"Product Name: {item.name}")
+        print('--------------------------------------------------------------------------')
+
     else :
+        print('------------------------------Inventory List------------------------------')
         for item in inventory_items:
             print(f"Product Name: {item.name} | Price: {item.price} | Quantity: {item.quantity}")
+        print('--------------------------------------------------------------------------')
 
 def add_inventory():
     while True:
@@ -124,11 +129,15 @@ def delete_inventory():
 def view_current_order(show_id = None):
     order_items = Order.get_all()
     if show_id:
+        print('---------------------------------------------------------------------')
         for item in order_items:
             print(f" Order Number {item.id} | Product Name: {item.name} | Product Id: {item.product_id}| Quantity: {item.quantity}")
+        print('---------------------------------------------------------------------')
     else :
+        print('---------------------------------------------------------------------')
         for index, item in enumerate (order_items):
             print(f" {index + 1} | Product Name: {item.name} | Product Id: {item.product_id}| Quantity: {item.quantity}")
+        print('---------------------------------------------------------------------')
 
 def add_order():
     while True:
@@ -232,15 +241,15 @@ def show_order_by_inventory():
         if Inventory.find_by_name(choice):
             inventory = Inventory.find_by_name(choice)
             if inventory.orders():
-                print('----------------------------------------------------------------------------------------------------------------------')
+                print('-------------------------------------------------------Order List-------------------------------------------------------')
                 for order in inventory.orders():
                     print(f'Order Number {order.id} | Product Name: {order.name} | Product Id: {order.product_id}| Quantity: {order.quantity}')
-                print('----------------------------------------------------------------------------------------------------------------------')
+                print('------------------------------------------------------------------------------------------------------------------------')
 
                 time.sleep(0.5)
                 break
             else:
-                print('------------------------------------------------------------------------------------------------------------------------')
+                print('-------------------------------------------------------Order List-------------------------------------------------------')
                 print(f'There is currently no orders placed on {inventory.name}, please enter another product name or type exit to show other menu options')
                 print('------------------------------------------------------------------------------------------------------------------------')
 
@@ -248,6 +257,6 @@ def show_order_by_inventory():
             break
 
         else:
-            print('----------------------------------------------------------------------------------------------------------------------')
+            print('------------------------------------------------------------------------------------------------------------------------')
             print('The product name you have entered is not found, please enter a correct product name')
-            print('----------------------------------------------------------------------------------------------------------------------')
+            print('------------------------------------------------------------------------------------------------------------------------')
