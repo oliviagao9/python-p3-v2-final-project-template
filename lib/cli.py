@@ -45,6 +45,11 @@ def main():
         elif choice == "6":
             exit_program()
 
+        elif choice == "7":
+            view_current_inventory(True)
+            show_order_by_inventory()
+            return_main_menu_option()
+
         else:
             print("Please Enter a valid choice from 1 - 6")
             
@@ -56,6 +61,7 @@ def menu():
     print("4. Delete Inventory")
     print("5. Place Order")
     print("6. Exit")
+    print("7. View All Order Associated by Inventory")
 
 def update_inventory_menu():
     print("Please select an option:")
@@ -96,7 +102,7 @@ def order_menu_option():
     print("2. Place an New Order")
     print("3. Edit an Existing Order")
     print("4. Delete Order")
-    print("5. Exit")
+    print("5. Go Back to Main Menu")
     user_choice = input("> ")
 
     if user_choice == "1":
@@ -122,8 +128,7 @@ def order_menu_option():
         return_order_menu_option()
         
     elif user_choice == "5":
-        exit_program()
-        return_order_menu_option()
+        menu()
 
     else:
         print("Please Enter a valid choice from 1 - 5")
