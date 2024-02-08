@@ -51,9 +51,12 @@ def main():
             return_main_menu_option()
 
         else:
+            print('-----------------------------------------------------------')
             print("Please Enter a valid choice from 1 - 6")
-            
+            print('-----------------------------------------------------------')
+
 def menu():
+    print('---------------------------------------------------------------------')
     print("Please Select an Option From Menu Below:")
     print("1. View Current Inventory")
     print("2. Add Inventory")
@@ -62,18 +65,14 @@ def menu():
     print("5. Place Order")
     print("6. Exit")
     print("7. View All Order Associated by Inventory")
-
-def update_inventory_menu():
-    print("Please select an option:")
-    print("1. Edit Current Inventory Quantity")
-    print("2. Add New Inventory")
-    print("3. Delete Inventory")
-    print("4. Exit")
+    print('---------------------------------------------------------------------')
 
 def return_main_menu_option():
     time.sleep(1)
+    print('---------------------------------------------------------------------')
     print("If you want to go back to previous menu, please enter 1")
     print("If you want to exit the application, please enter 2")
+    print('---------------------------------------------------------------------')
     user_choice = input("> ")
 
     if user_choice == "1":
@@ -81,6 +80,10 @@ def return_main_menu_option():
 
     elif user_choice == "2":
         exit_program()
+    else:
+        print('-----------------------------------------------------------')
+        print("Please Enter a valid choice from 1 - 2")
+        print('-----------------------------------------------------------')
 
 def return_order_menu_option():
     time.sleep(1)
@@ -97,12 +100,14 @@ def return_order_menu_option():
 
 def order_menu_option():
     time.sleep(0.5)
+    print('---------------------------------------------------------------------')
     print("Please select an option for Order:")
     print("1. View Order List")
     print("2. Place an New Order")
     print("3. Edit an Existing Order")
     print("4. Delete Order")
     print("5. Go Back to Main Menu")
+    print('---------------------------------------------------------------------')
     user_choice = input("> ")
 
     if user_choice == "1":
@@ -117,8 +122,10 @@ def order_menu_option():
     elif user_choice == "3":
         view_current_order(True)
         time.sleep(0.3)
+        print('---------------------------------------------------------------------')
         print("Please enter the order id that you want to update")
         print("You can enter exit to go to other menu options")
+        print('---------------------------------------------------------------------')
         update_order()
         return_order_menu_option()
         
@@ -128,10 +135,12 @@ def order_menu_option():
         return_order_menu_option()
         
     elif user_choice == "5":
-        menu()
+        pass 
 
     else:
+        print('-----------------------------------------------------------')
         print("Please Enter a valid choice from 1 - 5")
+        print('-----------------------------------------------------------')
         order_menu_option()
 
 if __name__ == "__main__":
