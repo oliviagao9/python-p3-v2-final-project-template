@@ -223,3 +223,26 @@ def delete_order():
                 print("Please Enter a Correct Order Number")
     
         break
+
+def show_order_by_inventory():
+    print("Please enter a product name to check on orders")
+    while True:
+        choice = input("> ")
+
+        if Inventory.find_by_name(choice):
+            inventory = Inventory.find_by_name(choice)
+            if inventory.orders():
+                print('-------------------------------------------------------------------------------------------------------')
+                for order in inventory.orders():
+                    print(f'Order Number {order.id} | Product Name: {order.name} | Product Id: {order.product_id}| Quantity: {order.quantity}')
+                print('-------------------------------------------------------------------------------------------------------')
+
+                time.sleep(0.5)
+                break
+            else:
+                print('-------------------------------------------------------------------------------------------------------')
+                print(f'There is currently no orders placed on {inventory.name}, please enter another product name or type exit to show other menu options')
+                print('-------------------------------------------------------------------------------------------------------')
+
+        elif choice == 'exit':
+            break
