@@ -43,12 +43,12 @@ def main():
             order_menu_option()
 
         elif choice == "6":
-            exit_program()
-
-        elif choice == "7":
             view_current_inventory(True)
             show_order_by_inventory()
             return_main_menu_option()
+            
+        elif choice == "7":
+            exit_program()
 
         else:
             print('-----------------------------------------------------------')
@@ -63,8 +63,8 @@ def menu():
     print("3. Update Inventory Quantity")
     print("4. Delete Inventory")
     print("5. Place Order")
-    print("6. Exit")
-    print("7. View All Order Associated by Inventory")
+    print("6. View Orders by Inventory")
+    print("7. Exit")
     print('---------------------------------------------------------------------')
 
 def return_main_menu_option():
